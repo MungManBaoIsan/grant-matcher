@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grant Matcher Pro - Find Perfect Funding Opportunities</title>
+  <meta name="description" content="AI-powered grant matching platform to find the perfect funding opportunities for your organization">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .header {
+      text-align: center;
+      color: white;
+      margin-bottom: 30px;
+    }
+    
+    .header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    
+    .header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+    
+    .main-content {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+    
+    .tabs {
+      display: flex;
+      border-bottom: 2px solid #f0f0f0;
+      background: #fafafa;
+    }
+    
+    .tab {
+      flex: 1;
+      padding: 18px;
+      background: none;
+      border: none;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      color: #666;
+      transition: all 0.3s;
+    }
+    
+    .tab.active {
+      background: white;
+      color: #667eea;
+      border-bottom: 3px solid #667eea;
+    }
+    
+    .tab:hover:not(.active) {
+      background: #f5f5f5;
+    }
+    
+    .tab-content {
+      padding: 30px;
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #333;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border 0.3s;
+    }
+    
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+    
+    .form-group textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    
+    .btn {
+      padding: 14px 28px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+    }
+    
+    .btn-secondary {
+      background: #f0f0f0;
+      color: #333;
+    }
+    
+    .btn-secondary:hover {
+      background: #e0e0e0;
+    }
+    
+    .results-container {
+      margin-top: 20px;
+    }
+    
+    .result-card {
+      background: white;
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 20px;
+      transition: all 0.3s;
+    }
+    
+    .result-card:hover {
+      border-color: #667eea;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .result-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+    
+    .result-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 8px;
+    }
+    
+    .match-score {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    
+    .result-meta {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #666;
+      font-size: 0.9rem;
+    }
+    
+    .result-description {
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    
+    .tag {
+      background: #f0f0f0;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      color: #555;
+    }
+    
+    .tag.matched {
+      background: #e7f3ff;
+      color: #667eea;
+      font-weight: 500;
+    }
+    
+    .result-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .stat-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 24px;
+      border-radius: 12px;
+      color: white;
+    }
+    
+    .stat-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    
+    .stat-label {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+    
+    .no-results {
+      text-align: center;
+      padding: 60px 20px;
+      color: #999;
+    }
+    
+    .no-results h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+    
+    .grant-form {
+      background: #f9f9f9;
+      padding: 24px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    
+    .checkbox-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+    
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .checkbox-item input {
+      width: auto;
+    }
+    
+    .grant-list {
+      margin-top: 20px;
+    }
+    
+    .grant-item {
+      background: white;
+      padding: 16px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      border: 1px solid #e0e0e0;
+    }
+    
+    .grant-item h4 {
+      color: #333;
+      margin-bottom: 8px;
+    }
+    
+    .grant-item p {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+    }
+    
+    .info-box {
+      background: #e7f3ff;
+      border-left: 4px solid #667eea;
+      padding: 16px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    
+    .info-box h3 {
+      color: #667eea;
+      margin-bottom: 8px;
+    }
+    
+    .info-box p {
+      color: #555;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      
+      .header h1 {
+        font-size: 2rem;
+      }
+      
+      .tabs {
+        flex-direction: column;
+      }
+      
+      .result-header {
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🎯 Grant Matcher Pro</h1>
+      <p>Find the perfect funding opportunities for your organization</p>
+    </div>
+    
+    <div class="main-content">
+      <div class="tabs">
+        <button class="tab active" onclick="switchTab('profile')">Your Profile</button>
+        <button class="tab" onclick="switchTab('matches')">Find Matches</button>
+        <button class="tab" onclick="switchTab('grants')">Grant Database</button>
+      </div>
+      
+      <div id="profile-tab" class="tab-content active">
+        <div class="info-box">
+          <h3>💡 Getting Started</h3>
+          <p>Fill out your organization's profile to get personalized grant matches. The more detailed you are, the better the matches!</p>
+        </div>
+        
+        <form id="profile-form">
+          <div class="form-group">
+            <label>Organization Name *</label>
+            <input type="text" id="org-name" placeholder="e.g., The Buddhapadipa Temple Trust" required>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label>Organization Type *</label>
+              <select id="org-type" required>
+                <option value="">Select type...</option>
+                <option value="charity">Charity</option>
+                <option value="school">School</option>
+                <option value="community">Community Group</option>
+                <option value="religious">Religious Organization</option>
+                <option value="social-enterprise">Social Enterprise</option>
+                <option value="nonprofit">Non-Profit</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label>Annual Income (£)</label>
+              <input type="number" id="income" placeholder="e.g., 100000">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label>Project Name *</label>
+            <input type="text" id="project-name" placeholder="e.g., Thai Language for All" required>
+          </div>
+          
+          <div class="form-group">
+            <label>Project Description *</label>
+            <textarea id="project-description" placeholder="Describe what your project does, who it helps, and the impact it will have..." required></textarea>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label>Location/Region *</label>
+              <input type="text" id="location" placeholder="e.g., London, South East England" required>
+            </div>
+            
+            <div class="form-group">
+              <label>Funding Needed (£)</label>
+              <input type="number" id="funding-amount" placeholder="e.g., 50000">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label>Communities Served</label>
+            <div class="checkbox-group">
+              <div class="checkbox-item">
+                <input type="checkbox" id="comm-children" value="children young people">
+                <label for="comm-children">Children & Young People</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="comm-ethnic" value="ethnic minority asian buddhist">
+                <label for="comm-ethnic">Ethnic Minorities</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="comm-faith" value="faith religious buddhist">
+                <label for="comm-faith">Faith Communities</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="comm-education" value="education learning teaching">
+                <label for="comm-education">Educational Groups</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="comm-cultural" value="cultural heritage tradition">
+                <label for="comm-cultural">Cultural Heritage</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="comm-disadvantaged" value="disadvantaged poverty inequality">
+                <label for="comm-disadvantaged">Disadvantaged Groups</label>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label>Focus Areas (Keywords)</label>
+            <input type="text" id="keywords" placeholder="e.g., language education, buddhism, cultural preservation, youth development">
+            <small style="color: #999; display: block; margin-top: 4px;">Separate keywords with commas</small>
+          </div>
+          
+          <button type="submit" class="btn btn-primary">Save Profile & Find Matches</button>
+        </form>
+      </div>
+      
+      <div id="matches-tab" class="tab-content">
+        <div id="results-stats" style="display: none;">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-value" id="total-matches">0</div>
+              <div class="stat-label">Total Matches Found</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value" id="high-matches">0</div>
+              <div class="stat-label">High Match (70%+)</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value" id="total-funding">£0</div>
+              <div class="stat-label">Potential Funding</div>
+            </div>
+          </div>
+        </div>
+        
+        <div id="results-container"></div>
+      </div>
+      
+      <div id="grants-tab" class="tab-content">
+        <div class="info-box">
+          <h3>📚 Grant Database</h3>
+          <p>Browse all available grants or add new opportunities to the database.</p>
+        </div>
+        
+        <button class="btn btn-secondary" onclick="toggleGrantForm()" style="margin-bottom: 20px;">+ Add New Grant</button>
+        
+        <div id="add-grant-form" class="grant-form" style="display: none;">
+          <h3 style="margin-bottom: 16px;">Add New Grant Opportunity</h3>
+          <div class="form-group">
+            <label>Grant Name</label>
+            <input type="text" id="new-grant-name">
+          </div>
+          <div class="form-group">
+            <label>Funder</label>
+            <input type="text" id="new-grant-funder">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Maximum Amount (£)</label>
+              <input type="number" id="new-grant-amount">
+            </div>
+            <div class="form-group">
+              <label>Deadline</label>
+              <input type="date" id="new-grant-deadline">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <textarea id="new-grant-description"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Eligibility Criteria (keywords)</label>
+            <input type="text" id="new-grant-criteria" placeholder="e.g., education, youth, community, religion">
+          </div>
+          <button class="btn btn-primary" onclick="addGrant()">Add Grant</button>
+          <button class="btn btn-secondary" onclick="toggleGrantForm()" style="margin-left: 10px;">Cancel</button>
+        </div>
+        
+        <div id="grants-list" class="grant-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Grant database
+    let grants = [
+      {
+        id: 1,
+        name: "National Lottery Community Fund - Reaching Communities",
+        funder: "National Lottery Community Fund",
+        maxAmount: 500000,
+        deadline: "2026-12-31",
+        description: "Supports communities to come together, help children and young people thrive, be healthier, and be environmentally sustainable. Ideal for projects bringing people together through inclusive activities, especially for communities experiencing poverty, disadvantage or discrimination.",
+        criteria: ["community", "children", "young people", "education", "cultural", "heritage", "faith", "disadvantaged", "poverty", "ethnic minority", "social cohesion", "wellbeing"],
+        url: "https://www.tnlcommunityfund.org.uk/funding/programmes/reaching-communities"
+      },
+      {
+        id: 2,
+        name: "Esmée Fairbairn Foundation - Education and Learning",
+        funder: "Esmée Fairbairn Foundation",
+        maxAmount: 100000,
+        deadline: "2026-09-30",
+        description: "Supports educational projects that help people of all ages develop skills and knowledge. Particularly interested in work with disadvantaged young people and cultural learning initiatives.",
+        criteria: ["education", "learning", "youth", "skills", "cultural", "arts", "disadvantaged", "training", "development"],
+        url: "https://esmeefairbairn.org.uk"
+      },
+      {
+        id: 3,
+        name: "Paul Hamlyn Foundation - Ideas and Pioneering",
+        funder: "Paul Hamlyn Foundation",
+        maxAmount: 100000,
+        deadline: "2026-10-15",
+        description: "Supports arts, education and learning projects, particularly those working with young people experiencing disadvantage or marginalization. Values cultural diversity and innovation.",
+        criteria: ["arts", "education", "youth", "cultural diversity", "disadvantaged", "innovation", "learning", "migrant", "refugee", "ethnic minority"],
+        url: "https://www.phf.org.uk"
+      },
+      {
+        id: 4,
+        name: "Garfield Weston Foundation - Regular Grants",
+        funder: "Garfield Weston Foundation",
+        maxAmount: 100000,
+        deadline: "2026-11-30",
+        description: "Supports a wide range of charitable work including education, community, religion, and youth. Provides grants to registered charities across the UK.",
+        criteria: ["charity", "education", "community", "religion", "faith", "youth", "welfare", "arts", "heritage"],
+        url: "https://garfieldweston.org"
+      },
+      {
+        id: 5,
+        name: "Heritage Lottery Fund - Heritage Grants",
+        funder: "National Lottery Heritage Fund",
+        maxAmount: 250000,
+        deadline: "2027-01-31",
+        description: "Supports projects that explore, conserve and share heritage. Includes cultural traditions, languages, and religious heritage.",
+        criteria: ["heritage", "cultural", "tradition", "conservation", "language", "community", "education", "history", "religion"],
+        url: "https://www.heritagefund.org.uk"
+      },
+      {
+        id: 6,
+        name: "Comic Relief - Community Grants",
+        funder: "Comic Relief",
+        maxAmount: 50000,
+        deadline: "2026-08-31",
+        description: "Supports grassroots organizations working with disadvantaged communities. Focus on children and young people, mental health, and community cohesion.",
+        criteria: ["community", "disadvantaged", "children", "youth", "mental health", "wellbeing", "poverty", "social inclusion"],
+        url: "https://www.comicrelief.com"
+      },
+      {
+        id: 7,
+        name: "London Community Foundation",
+        funder: "London Community Foundation",
+        maxAmount: 30000,
+        deadline: "2026-07-15",
+        description: "Supports small grassroots organizations in London working with disadvantaged communities. Focuses on children and youth, education, and community development.",
+        criteria: ["london", "community", "disadvantaged", "children", "youth", "education", "grassroots", "local"],
+        url: "https://londoncf.org.uk"
+      },
+      {
+        id: 8,
+        name: "The Funding Network",
+        funder: "The Funding Network",
+        maxAmount: 10000,
+        deadline: "2026-06-30",
+        description: "Provides rapid funding through live crowdfunding events. Supports innovative community projects addressing social issues.",
+        criteria: ["community", "innovation", "social change", "grassroots", "crowdfunding"],
+        url: "https://thefundingnetwork.org.uk"
+      }
+    ];
+
+    // User profile
+    let userProfile = {};
+
+    // Switch tabs
+    function switchTab(tabName) {
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+      
+      event.target.classList.add('active');
+      document.getElementById(tabName + '-tab').classList.add('active');
+      
+      if (tabName === 'grants') {
+        displayGrantsList();
+      }
+    }
+
+    // Handle profile form submission
+    document.getElementById('profile-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Collect community checkboxes
+      let communities = [];
+      document.querySelectorAll('.checkbox-item input:checked').forEach(cb => {
+        communities.push(cb.value);
+      });
+      
+      userProfile = {
+        orgName: document.getElementById('org-name').value,
+        orgType: document.getElementById('org-type').value,
+        income: document.getElementById('income').value,
+        projectName: document.getElementById('project-name').value,
+        description: document.getElementById('project-description').value,
+        location: document.getElementById('location').value,
+        fundingNeeded: document.getElementById('funding-amount').value,
+        communities: communities.join(' '),
+        keywords: document.getElementById('keywords').value
+      };
+      
+      // Find matches
+      findMatches();
+      
+      // Switch to matches tab
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+      document.querySelectorAll('.tab')[1].classList.add('active');
+      document.getElementById('matches-tab').classList.add('active');
+    });
+
+    // Keyword matching algorithm
+    function calculateMatch(grant) {
+      let score = 0;
+      const maxScore = 100;
+      
+      // Combine all user text for matching
+      const userText = `
+        ${userProfile.orgType} 
+        ${userProfile.description} 
+        ${userProfile.communities} 
+        ${userProfile.keywords}
+      `.toLowerCase();
+      
+      // Check each grant criterion
+      const grantCriteria = grant.criteria.join(' ').toLowerCase();
+      const criteriaWords = grantCriteria.split(' ');
+      
+      let matchedCriteria = [];
+      let matchCount = 0;
+      
+      criteriaWords.forEach(word => {
+        if (word.length > 3 && userText.includes(word)) {
+          matchCount++;
+          matchedCriteria.push(word);
+        }
+      });
+      
+      // Calculate score based on percentage of criteria matched
+      score = Math.round((matchCount / criteriaWords.length) * 100);
+      
+      // Bonus points for location match
+      if (grant.criteria.includes('london') && userProfile.location.toLowerCase().includes('london')) {
+        score += 10;
+      }
+      
+      // Cap at 100
+      score = Math.min(score, maxScore);
+      
+      return {
+        score: score,
+        matchedCriteria: matchedCriteria
+      };
+    }
+
+    // Find and display matches
+    function findMatches() {
+      const resultsContainer = document.getElementById('results-container');
+      resultsContainer.innerHTML = '';
+      
+      // Calculate matches for all grants
+      const matches = grants.map(grant => {
+        const match = calculateMatch(grant);
+        return {
+          ...grant,
+          matchScore: match.score,
+          matchedCriteria: match.matchedCriteria
+        };
+      }).filter(grant => grant.matchScore > 0)
+        .sort((a, b) => b.matchScore - a.matchScore);
+      
+      if (matches.length === 0) {
+        resultsContainer.innerHTML = `
+          <div class="no-results">
+            <h3>No matches found</h3>
+            <p>Try adding more keywords or adjusting your profile details.</p>
+          </div>
+        `;
+        document.getElementById('results-stats').style.display = 'none';
+        return;
+      }
+      
+      // Display stats
+      document.getElementById('results-stats').style.display = 'block';
+      document.getElementById('total-matches').textContent = matches.length;
+      document.getElementById('high-matches').textContent = matches.filter(m => m.matchScore >= 70).length;
+      const totalFunding = matches.reduce((sum, m) => sum + m.maxAmount, 0);
+      document.getElementById('total-funding').textContent = '£' + totalFunding.toLocaleString();
+      
+      // Display each match
+      matches.forEach(grant => {
+        const matchColor = grant.matchScore >= 80 ? '#10b981' : 
+                          grant.matchScore >= 60 ? '#667eea' : '#f59e0b';
+        
+        const card = document.createElement('div');
+        card.className = 'result-card';
+        card.innerHTML = `
+          <div class="result-header">
+            <div>
+              <div class="result-title">${grant.name}</div>
+              <div style="color: #999; font-size: 0.9rem;">${grant.funder}</div>
+            </div>
+            <div class="match-score" style="background: ${matchColor};">${grant.matchScore}% Match</div>
+          </div>
+          
+          <div class="result-meta">
+            <div class="meta-item">
+              💰 Up to £${grant.maxAmount.toLocaleString()}
+            </div>
+            <div class="meta-item">
+              📅 Deadline: ${new Date(grant.deadline).toLocaleDateString('en-GB')}
+            </div>
+          </div>
+          
+          <div class="result-description">${grant.description}</div>
+          
+          <div class="tags">
+            ${grant.criteria.map(criterion => {
+              const isMatched = grant.matchedCriteria.includes(criterion);
+              return `<span class="tag ${isMatched ? 'matched' : ''}">${criterion}</span>`;
+            }).join('')}
+          </div>
+          
+          <div class="result-actions">
+            <button class="btn btn-primary" onclick="window.open('${grant.url}', '_blank')">View Grant Details →</button>
+            <button class="btn btn-secondary" onclick="exportMatch(${grant.id})">Export Match Report</button>
+          </div>
+        `;
+        
+        resultsContainer.appendChild(card);
+      });
+    }
+
+    // Export match report
+    function exportMatch(grantId) {
+      const grant = grants.find(g => g.id === grantId);
+      const match = calculateMatch(grant);
+      
+      const report = `
+GRANT MATCH REPORT
+==================
+
+Generated: ${new Date().toLocaleDateString('en-GB')}
+
+YOUR ORGANIZATION
+-----------------
+Name: ${userProfile.orgName}
+Project: ${userProfile.projectName}
+Funding Needed: £${userProfile.fundingNeeded}
+
+GRANT OPPORTUNITY
+-----------------
+Name: ${grant.name}
+Funder: ${grant.funder}
+Maximum Amount: £${grant.maxAmount.toLocaleString()}
+Deadline: ${new Date(grant.deadline).toLocaleDateString('en-GB')}
+
+MATCH SCORE: ${match.score}%
+
+Matched Keywords: ${match.matchedCriteria.join(', ')}
+
+Description: ${grant.description}
+
+Application URL: ${grant.url}
+
+NEXT STEPS
+----------
+1. Review the full grant guidelines at the URL above
+2. Prepare required documents (financial statements, governing documents, etc.)
+3. Draft your application focusing on matched criteria
+4. Submit before the deadline
+
+---
+Generated by Grant Matcher Pro
+      `;
+      
+      const blob = new Blob([report], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `grant-match-${grant.name.replace(/[^a-z0-9]/gi, '-').toLowerCase()}.txt`;
+      a.click();
+      URL.revokeObjectURL(url);
+      
+      alert('Match report downloaded!');
+    }
+
+    // Toggle grant form
+    function toggleGrantForm() {
+      const form = document.getElementById('add-grant-form');
+      form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    }
+
+    // Add new grant
+    function addGrant() {
+      const name = document.getElementById('new-grant-name').value;
+      const funder = document.getElementById('new-grant-funder').value;
+      const amount = document.getElementById('new-grant-amount').value;
+      const deadline = document.getElementById('new-grant-deadline').value;
+      const description = document.getElementById('new-grant-description').value;
+      const criteria = document.getElementById('new-grant-criteria').value.split(',').map(c => c.trim().toLowerCase());
+      
+      if (!name || !funder || !amount || !deadline || !description) {
+        alert('Please fill in all fields');
+        return;
+      }
+      
+      const newGrant = {
+        id: grants.length + 1,
+        name,
+        funder,
+        maxAmount: parseInt(amount),
+        deadline,
+        description,
+        criteria,
+        url: '#'
+      };
+      
+      grants.push(newGrant);
+      
+      // Clear form
+      document.getElementById('new-grant-name').value = '';
+      document.getElementById('new-grant-funder').value = '';
+      document.getElementById('new-grant-amount').value = '';
+      document.getElementById('new-grant-deadline').value = '';
+      document.getElementById('new-grant-description').value = '';
+      document.getElementById('new-grant-criteria').value = '';
+      
+      toggleGrantForm();
+      displayGrantsList();
+      
+      alert('Grant added successfully!');
+    }
+
+    // Display grants list
+    function displayGrantsList() {
+      const list = document.getElementById('grants-list');
+      list.innerHTML = '<h3 style="margin-bottom: 16px;">All Grants (' + grants.length + ')</h3>';
+      
+      grants.forEach(grant => {
+        const item = document.createElement('div');
+        item.className = 'grant-item';
+        item.innerHTML = `
+          <h4>${grant.name}</h4>
+          <p><strong>Funder:</strong> ${grant.funder}</p>
+          <p><strong>Max Amount:</strong> £${grant.maxAmount.toLocaleString()}</p>
+          <p><strong>Deadline:</strong> ${new Date(grant.deadline).toLocaleDateString('en-GB')}</p>
+          <p><strong>Keywords:</strong> ${grant.criteria.join(', ')}</p>
+        `;
+        list.appendChild(item);
+      });
+    }
+
+    // Initialize
+    displayGrantsList();
+  </script>
+</body>
+</html>
