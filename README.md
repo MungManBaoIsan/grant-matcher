@@ -1,121 +1,47 @@
-# 🎯 Grant Matcher Pro
+# Grant Matcher Pro
 
-A smart web application that helps organizations find and match with relevant grant funding opportunities using keyword-based matching algorithms.
+A smart web app that helps charities and community organisations discover relevant UK grant funding opportunities — and see exactly how well they match.
 
-![Grant Matcher Pro](https://img.shields.io/badge/version-1.0.0-blue)
-![License](https://img.shields.io/badge/license-MIT-green)
+**Live app:** [https://mungmanbaoisan.github.io/grant-matcher/](https://mungmanbaoisan.github.io/grant-matcher/)
+**GitHub:** [https://github.com/MungManBaoIsan/grant-matcher](https://github.com/MungManBaoIsan/grant-matcher)
 
-## 🌟 Features
+## What It Does
 
-- **Smart Matching Algorithm**: Keyword-based matching engine that scores grants based on your organization's profile
-- **Interactive Dashboard**: Beautiful, responsive UI with real-time match calculations
-- **Grant Database**: Pre-loaded with 8+ UK grant opportunities (National Lottery, Esmée Fairbairn, etc.)
-- **Export Functionality**: Download detailed match reports for grant applications
-- **Expandable**: Easy to add new grants to the database
-- **Mobile Responsive**: Works seamlessly on desktop, tablet, and mobile devices
+- Enter your organisation's profile and keywords to get personalised grant matches
+- Scores 8+ UK funders (National Lottery, Esmée Fairbairn, and more) from 0–100% match
+- Ranks results in real time so the best funding fits rise to the top
+- Export a detailed match report to support your grant applications
+- Works on desktop, tablet, and mobile — no installation needed
 
-## 🚀 Live Demo
+## Built With
 
-Visit the live application: [Your GitHub Pages URL]
+- **HTML** — the structure and content of the page
+- **CSS** — styling, layout, and the gradient design
+- **JavaScript (Vanilla)** — the matching algorithm and all interactive features
+- **localStorage** — saves your profile in the browser so nothing is lost on refresh
+- **GitHub Pages** — free hosting that makes the app live on the internet
 
-## 💡 How It Works
+## How to Run It
 
-1. **Profile Creation**: Enter your organization's details, mission, and funding needs
-2. **Automatic Matching**: The algorithm analyzes your profile against grant criteria
-3. **Ranked Results**: View grants sorted by match percentage (0-100%)
-4. **Apply with Confidence**: Export match reports and access grant application links
+1. Visit the live app: [https://mungmanbaoisan.github.io/grant-matcher/](https://mungmanbaoisan.github.io/grant-matcher/)
+2. Or clone it locally:
+   ```
+   git clone https://github.com/MungManBaoIsan/grant-matcher.git
+   ```
+3. Open `index.html` in your browser — no setup or build process needed
 
-## 🛠️ Technology Stack
+## My Journey
 
-- **Frontend**: Vanilla JavaScript (ES6+)
-- **Styling**: Pure CSS with gradient backgrounds
-- **Storage**: Browser localStorage (client-side only)
-- **Deployment**: GitHub Pages ready
+**16 May 2026 — Deployed Grant Matcher Pro to GitHub Pages**
 
-## 📦 Installation
+I built and deployed Grant Matcher Pro — a single-page web application that helps charities and community organisations find relevant UK grant funding. The app lets users enter their organisation's profile and keywords, then scores and ranks a pre-loaded database of 8+ UK funders by match percentage.
 
-### Option 1: Direct Use
-Simply open `index.html` in your browser - no build process required!
+I built it as a single HTML file (no frameworks, no build tools) so it runs instantly in any browser and deploys to GitHub Pages with zero configuration. The JavaScript matching algorithm compares keywords from the user's profile against each grant's criteria, scores them 0–100%, and ranks them in real time.
 
-### Option 2: Local Development
-```bash
-# Clone the repository
-git clone https://github.com/YOUR_USERNAME/grant-matcher.git
+I also learned how to install and use the GitHub CLI on Windows, create a public repository from the terminal, and enable GitHub Pages — all in a single session.
 
-# Navigate to the directory
-cd grant-matcher
+## What's Next
 
-# Open in browser
-open index.html
-```
-
-## 🌐 Deployment
-
-### GitHub Pages
-
-1. Push to GitHub repository
-2. Go to Settings > Pages
-3. Select main branch as source
-4. Your site will be live at: `https://YOUR_USERNAME.github.io/grant-matcher`
-
-### Netlify
-
-1. Drag and drop the `index.html` file to netlify.com
-2. Get instant URL
-3. Optional: Configure custom domain
-
-## 📊 Grant Database
-
-Currently includes:
-- National Lottery Community Fund - Reaching Communities (up to £500,000)
-- Esmée Fairbairn Foundation (up to £100,000)
-- Paul Hamlyn Foundation (up to £100,000)
-- Garfield Weston Foundation (up to £100,000)
-- Heritage Lottery Fund (up to £250,000)
-- Comic Relief Community Grants (up to £50,000)
-- London Community Foundation (up to £30,000)
-- The Funding Network (up to £10,000)
-
-## 🎯 Use Cases
-
-Perfect for:
-- Charities seeking funding
-- Community organizations
-- Educational institutions
-- Faith-based groups
-- Social enterprises
-- Non-profit organizations
-
-## 🔮 Future Enhancements
-
-- [ ] Backend database integration
-- [ ] AI-powered semantic matching using Claude API
-- [ ] Email notifications for new grants
-- [ ] Multi-user support
-- [ ] PDF report generation
-- [ ] Application deadline reminders
-- [ ] Grant tracking dashboard
-
-## 👨‍💻 Author
-
-**Joshua Blakemore Kay**
-- Portfolio: [Your Portfolio URL]
-- GitHub: [@YOUR_USERNAME]
-
-## 📝 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🙏 Acknowledgments
-
-- Built as a portfolio project demonstrating full-stack web development skills
-- Inspired by the need to help community organizations find funding
-- Grant data sourced from official funder websites
-
-## 📧 Contact
-
-For questions or collaboration opportunities, reach out at: [your-email@example.com]
-
----
-
-**Made with ❤️ to help organizations secure funding for impactful projects**
+- Add a backend database so new grants can be added without editing the code
+- Integrate Claude API for smarter semantic matching (not just keywords)
+- Add email alerts when new grants match your organisation's profile
