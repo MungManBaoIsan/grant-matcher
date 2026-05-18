@@ -1,0 +1,19 @@
+{
+  "prompt": "app-build-initial",
+  "timestamp": "2026-05-18T14:58:05.087193+00:00",
+  "cases_run": 1,
+  "avg_score": 0.0,
+  "all_passed": true,
+  "cases": [
+    {
+      "case_index": 0,
+      "inputs": {
+        "description": "single html file grant matching app with keyword scoring"
+      },
+      "output": "",
+      "score": null,
+      "passed": null,
+      "criteria": []
+    }
+  ]
+}

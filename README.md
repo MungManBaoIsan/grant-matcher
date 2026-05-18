@@ -32,6 +32,12 @@ A smart web app that helps charities and community organisations discover releva
 
 ## My Journey
 
+**18 May 2026 — Audited prompt archive against source conversations; added meta-prompt entry**
+
+I went back to the original Claude Chat conversations where this project was built and cross-checked them against the prompt archive. The project spanned two separate conversations — a January session (the grant application) and a May session (the app build and deployment) — so I had to consider both when deciding what to correct or keep.
+
+I found two inaccuracies in the existing archive and corrected them: one prompt had a fictional "Quick question:" prefix that wasn't in the original, and another had a plausible-but-invented single-command build prompt when the real build was triggered by answering three Q&A questions. I also added a new prompt — `deployment-strategy-request` — which captures the technique of using Claude Chat to *write* a prompt for Claude Code rather than writing it manually. The CHANGELOG records the full correction history so nothing is hidden. All six prompts pass the mock eval at 100%.
+
 **18 May 2026 — Ran prompt evaluations, fixed UTF-8 bug, confirmed CI passing on GitHub**
 
 I ran the eval runner for the first time, hit a few snags (missing `prompt.md` files, a Windows encoding crash when writing emoji), and fixed them. Created fixture files for all 5 prompts so the CI can run deterministically without API calls. All 5 prompts now score 100% in mock mode. The GitHub Actions workflow confirmed green — from now on every push to the prompts folder triggers an automatic check.

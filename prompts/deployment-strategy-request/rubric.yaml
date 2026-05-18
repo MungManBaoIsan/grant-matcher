@@ -1,0 +1,33 @@
+prompt: Deployment Strategy Request
+version: v1
+criteria:
+  - name: includes_deployment_steps
+    description: Response contains numbered or bulleted GitHub Pages deployment steps
+    weight: 4
+    pass_condition: any(term in output.lower() for term in ['github pages', 'settings', 'pages', 'enable', 'main branch'])
+
+  - name: generates_claude_code_prompt
+    description: Response produces a formatted prompt block for Claude Code
+    weight: 5
+    pass_condition: any(term in output for term in ['TASKS', 'PROJECT DETAILS', 'Claude Code', 'repository', 'PROMPT'])
+
+  - name: includes_portfolio_update
+    description: Generated Claude Code prompt references the portfolio-update skill
+    weight: 3
+    pass_condition: "'portfolio' in output.lower() and 'skill' in output.lower()"
+
+  - name: includes_project_details
+    description: Generated prompt contains specific project name, files, or repo name
+    weight: 4
+    pass_condition: any(term in output for term in ['grant-matcher', 'index.html', 'grant matcher', 'Grant Matcher'])
+
+test_cases:
+  - input:
+      project: "grant-matcher"
+      files: "index.html and README.md"
+      live_url: "https://mungmanbaoisan.github.io/grant-matcher/"
+    expected_traits:
+      - contains GitHub Pages deployment steps
+      - produces a formatted Claude Code prompt
+      - references the portfolio-update skill
+      - names the project and files

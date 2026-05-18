@@ -1,0 +1,46 @@
+{
+  "prompt": "deployment-strategy-request",
+  "timestamp": "2026-05-18T15:02:59.427273+00:00",
+  "cases_run": 1,
+  "avg_score": 1.0,
+  "all_passed": true,
+  "cases": [
+    {
+      "case_index": 0,
+      "inputs": {
+        "project": "grant-matcher",
+        "files": "index.html and README.md",
+        "live_url": "https://mungmanbaoisan.github.io/grant-matcher/"
+      },
+      "output": "Here are the two things you asked for:\n\n---\n\n## GitHub Pages Deployment Steps\n\n1. Go to github.com and create a new public repository called `grant-matcher`\n2. Upload `index.html` and `README.md` to the repository\n3. Go to **Settings** \u2192 **Pages**\n4. Under Source, select the **main branch** and click **Save**\n5. Wait 2\u20133 minutes \u2014 your site will be live at `https://yourusername.github.io/grant-matcher/`\n\n---\n\n## PROMPT FOR CLAUDE CODE\n\n```\nPROJECT DETAILS:\n- Project Name: grant-matcher\n- Description: AI-powered grant matching platform\n- Files: index.html and README.md (already downloaded)\n\nTASKS:\n1. Create a new public GitHub repository called \"grant-matcher\"\n2. Add index.html as the main application\n3. Add README.md with project documentation\n4. Set up GitHub Pages to serve from the main branch\n5. Confirm the live URL\n\nIf you have a portfolio-update skill, please also:\n- Add this project to my portfolio with the live demo link and GitHub repo link\n- Tech stack: HTML, CSS, JavaScript\n```\n",
+      "score": 1.0,
+      "passed": true,
+      "criteria": [
+        {
+          "name": "includes_deployment_steps",
+          "passed": true,
+          "weight": 4,
+          "error": null
+        },
+        {
+          "name": "generates_claude_code_prompt",
+          "passed": true,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "includes_portfolio_update",
+          "passed": true,
+          "weight": 3,
+          "error": null
+        },
+        {
+          "name": "includes_project_details",
+          "passed": true,
+          "weight": 4,
+          "error": null
+        }
+      ]
+    }
+  ]
+}

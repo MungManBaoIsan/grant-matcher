@@ -5,5 +5,5 @@
 ## The prompt
 
 ```
-Quick question: Software/Platform Approach: Create a database or AI tool that matches companies to grant opportunities. Would this be better done on Claude Chat, Claude Cowork or Claude Code?
+Software/Platform Approach: Create a database or AI tool that matches companies to grant opportunities. Would this be better done on Claude Chat, Claude Cowork or Claude Code?
 ```

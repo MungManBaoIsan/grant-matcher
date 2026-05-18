@@ -13,16 +13,35 @@ Chronological record of prompt creation. Newest entries at the top.
 
 ---
 
+## deployment-strategy-request
+
+### 2026-05-18 — v1
+**Change:** Initial version. Added from second conversation review.
+**Reason:** Captured the meta-prompt technique used to commission the Claude Code deployment prompt — using Claude Chat to generate input for Claude Code rather than writing it manually.
+**Impact:** Claude generated a complete, structured Claude Code prompt from project context already in the conversation. Pasted and executed successfully in Claude Code.
+
+---
+
 ## app-concept-platform-choice
+
+### 2026-05-18 — v1 (corrected)
+**Change:** Removed inaccurate "Quick question:" prefix from prompt text. Updated REASONING.md to correct an error — previous version stated the app was built in Claude Code; it was actually built entirely in Claude Chat. Also updated REASONING.md to reflect that the prompt was natural rather than strategic.
+**Reason:** Conversation log review revealed the original archive was slightly inaccurate.
+**Impact:** Record now accurately reflects what happened.
 
 ### 2026-05-16 — v1
 **Change:** Initial version.
 **Reason:** Needed to choose the right Claude environment before writing a single line of code — Claude Chat, Cowork, or Code.
-**Impact:** Answer pointed to Claude Code. Kicked off the entire Grant Matcher Pro build session.
+**Impact:** Claude responded with an architecture overview and Q&A questions that scoped the entire build.
 
 ---
 
 ## app-build-initial
+
+### 2026-05-18 — v1 (updated from reconstructed)
+**Change:** Replaced reconstructed single-command prompt with the actual multi-turn Q&A exchange that triggered the build. Removed "Reconstructed" label. Updated REASONING.md to reflect that the developer understood their Q&A answers would commission the app.
+**Reason:** Conversation log review revealed the original was a plausible but fictional reconstruction. The real build brief was three Q&A answers.
+**Impact:** Archive now accurately reflects the actual build process.
 
 ### 2026-05-16 — v1 (reconstructed)
 **Change:** Initial version.

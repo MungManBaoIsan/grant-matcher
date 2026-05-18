@@ -1,0 +1,21 @@
+{
+  "prompt": "deploy-to-github-pages",
+  "timestamp": "2026-05-18T14:58:05.100110+00:00",
+  "cases_run": 1,
+  "avg_score": 0.0,
+  "all_passed": true,
+  "cases": [
+    {
+      "case_index": 0,
+      "inputs": {
+        "repo": "grant-matcher",
+        "branch": "main",
+        "files": "index.html README.md"
+      },
+      "output": "",
+      "score": null,
+      "passed": null,
+      "criteria": []
+    }
+  ]
+}

@@ -74,3 +74,37 @@ I learned that Claude Code session logs are stored as `.jsonl` files and you can
 Full session in Claude Code (18 May 2026). CI confirmed passing via `gh run list`.
 
 ---
+
+## 18 May 2026 — Audited prompt archive against source conversations; added meta-prompt entry
+
+**Type:** Improvement / Documentation
+
+**What I built or did**
+I went back to the original Claude Chat conversations where Grant Matcher Pro was built and cross-checked them against the existing prompt archive. The project was built across *two* separate conversations — a January session where I wrote the Buddhapadipa Temple grant application, and a May session where I built, deployed, and documented the app itself. I had to consider both when deciding what to update.
+
+The January conversation (shared at the same link) was only partly recoverable — Firecrawl could extract Claude's responses but the user messages were hidden because the shared view doesn't expose file attachments. So `grant-application-writer` was left as-is: we couldn't verify the original prompt, so making changes would have meant guessing.
+
+For the May conversation I found and corrected two inaccuracies and added a new prompt that wasn't captured first time round.
+
+For `app-concept-platform-choice`, the reasoning doc incorrectly stated that the app was built in Claude Code — it was built entirely in Claude Chat. Claude Code was only used later for deployment. I also removed a "Quick question:" prefix from the prompt text that wasn't in the original.
+
+For `app-build-initial`, the first archive had a reconstructed single-command prompt that was never actually sent. The real build was triggered by answering three Q&A questions from Claude — about my tech comfort level, project goals, and matching complexity. I replaced the reconstruction with the actual Q&A exchange.
+
+I also added `deployment-strategy-request`, a new prompt that captures a technique I used without naming it at the time: asking Claude Chat to *write* a prompt for Claude Code rather than writing it myself. Because Claude already had all the project context in the conversation, it generated an accurate, detailed Claude Code deployment brief without me having to re-explain anything.
+
+**Why I did it this way**
+The first archive was done from memory — close, but not verbatim. Going back to the actual conversation and correcting what was wrong is more honest and more useful as portfolio evidence. A prompt archive that labels reconstructions correctly, and updates them when source material becomes available, is more trustworthy than one that leaves plausible-but-fictional descriptions in place.
+
+**How it works**
+I used the `prompt-archivist` skill — fetching the shared link with Firecrawl, pasting the conversation content directly (user messages aren't rendered in shared views), running the interview phase, reviewing each REASONING.md draft inline before writing anything, then updating the index README and CHANGELOG. All six prompts pass the mock eval at 100%.
+
+**What this means for the app**
+The prompt archive is now sourced from the actual conversation rather than reconstruction. Two existing prompts corrected, one updated to reflect its real multi-turn format, one new prompt added. The CHANGELOG records all of this with before/after entries — so the correction history is part of the portfolio story, not hidden.
+
+**What I learned**
+Claude.ai shared links don't expose user messages in a way that standard web fetch tools can read — the page is JavaScript-rendered. Firecrawl can get Claude's responses, but for the user's actual prompts you need to paste directly from the original conversation. Also: correcting a prompt archive when source material becomes available is worth doing even if the reconstruction was close — accuracy matters more than consistency.
+
+**References / Conversations**
+Source conversation: https://claude.ai/share/3ef96091-978a-4247-8f45-9b08d78a270a (16 May 2026 — the original Grant Matcher Pro build session in Claude Chat).
+
+---

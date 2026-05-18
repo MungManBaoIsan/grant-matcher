@@ -1,0 +1,19 @@
+{
+  "prompt": "app-concept-platform-choice",
+  "timestamp": "2026-05-18T14:58:05.094069+00:00",
+  "cases_run": 1,
+  "avg_score": 0.0,
+  "all_passed": true,
+  "cases": [
+    {
+      "case_index": 0,
+      "inputs": {
+        "question": "Software/Platform Approach: Create a database or AI tool that matches companies to grant opportunities. Would this be better done on Claude Chat, Claude Cowork or Claude Code?"
+      },
+      "output": "",
+      "score": null,
+      "passed": null,
+      "criteria": []
+    }
+  ]
+}

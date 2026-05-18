@@ -1,0 +1,21 @@
+{
+  "prompt": "deployment-strategy-request",
+  "timestamp": "2026-05-18T14:58:05.105128+00:00",
+  "cases_run": 1,
+  "avg_score": 0.0,
+  "all_passed": true,
+  "cases": [
+    {
+      "case_index": 0,
+      "inputs": {
+        "project": "grant-matcher",
+        "files": "index.html and README.md",
+        "live_url": "https://mungmanbaoisan.github.io/grant-matcher/"
+      },
+      "output": "",
+      "score": null,
+      "passed": null,
+      "criteria": []
+    }
+  ]
+}

@@ -1,10 +1,39 @@
-# App Build — Initial (Reconstructed)
+# App Build — Initial
 
-> **Category:** code-generation | **Status:** production | **Last updated:** 2026-05-16
-> **Note:** Reconstructed — original sent in Claude Chat with no recoverable logs.
+> **Category:** code-generation | **Status:** production | **Last updated:** 2026-05-18
+> **Note:** Multi-turn — the build was triggered by answering Claude's Q&A questions, not a single command.
+
+## What this prompt does
+
+Commissions a complete grant matching web app by answering three targeted Q&A questions from Claude about tech comfort, project goals, and matching complexity.
 
 ## The prompt
 
-```
-Build a grant matching web app as a single HTML file. It should let a charity or community organisation enter their profile details and keywords, then score and rank a database of UK grant funders by how well they match. Include a match percentage score, show the most relevant grants at the top, and let users export a match report. Keep it clean and professional.
-```
+This was a multi-turn exchange. After the platform choice question, Claude asked three follow-up questions. The answers below constitute the full build brief:
+
+**Q: What's your current comfort level with these technologies?**
+A: Mostly frontend (HTML/CSS/JS)
+
+**Q: What's your primary goal for this project?**
+A: Portfolio showcase piece and get actual results to help fund temple projects.
+
+**Q: How complex should the AI matching be?**
+A: Simple keyword matching
+
+## Inputs
+
+No structured inputs — the Q&A context was implicit from the preceding platform choice conversation.
+
+## Expected output
+
+A complete single-file HTML/CSS/JS web application with:
+- Organisation profile form
+- UK grant database (8+ funders)
+- Keyword-based matching algorithm with 0–100% scores
+- Ranked results dashboard
+- Export/download functionality
+
+## Related files
+
+- Reasoning: [`REASONING.md`](./REASONING.md)
+- Evaluation rubric: [`rubric.yaml`](./rubric.yaml)

@@ -1,4 +1,4 @@
-prompt: App Build — Initial (Reconstructed)
+prompt: App Build — Initial
 version: v1
 criteria:
   - name: single_html_file
