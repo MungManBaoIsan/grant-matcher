@@ -50,3 +50,27 @@ I learned that Claude Code session logs are stored as `.jsonl` files in `~/.clau
 Archived using the `prompt-archivist` skill in a Claude Code session (May 2026). Session log: `C--Users-joshk-grant-matcher/609ce33a...jsonl`.
 
 ---
+
+## 18 May 2026 — Ran prompt evaluations, fixed UTF-8 bug, confirmed CI passing on GitHub
+
+**Type:** Bug Fix / Milestone
+
+**What I built or did**
+I ran the prompt eval runner (a Python script that checks each prompt against its rubric) for the first time. It failed initially because the prompt directories were missing `prompt.md` files — the runner needs those to find and load each prompt. I created minimal `prompt.md` files for all 5 prompts, then created fixture files (sample outputs that the mock mode tests against) for each one. I also hit a Windows-specific bug where the runner crashed trying to write emoji characters — fixed by adding `encoding='utf-8'` to the file writer.
+
+**Why I did it this way**
+Fixtures are the right approach for CI testing because they let the eval runner check rubrics without calling the Claude API on every push — fast, free, and deterministic (meaning it gives the same result every time). Each fixture is a representative sample output that passes all the rubric criteria.
+
+**How it works**
+The runner looks for a `prompt.md` and `rubric.yaml` in each prompt directory. For each test case in the rubric, it looks up a fixture file by fingerprint (a code generated from the test inputs), loads that as the model output, then evaluates each pass condition against it. If any prompt scores below 80%, the whole run fails.
+
+**What this means for the app**
+The GitHub Actions CI workflow (an automated check that runs on every push) is now fully wired up and confirmed green. From this point on, any change to the prompts folder will automatically trigger a lint and eval check — broken rubrics or missing files will be caught before they reach the main branch.
+
+**What I learned**
+I learned that Claude Code session logs are stored as `.jsonl` files and you can extract real verbatim prompts from them using PowerShell. I also learned that Windows uses a different default text encoding (cp1252) to Linux, which causes crashes when writing emoji — always specify `encoding='utf-8'` when writing files in Python on Windows.
+
+**References / Conversations**
+Full session in Claude Code (18 May 2026). CI confirmed passing via `gh run list`.
+
+---

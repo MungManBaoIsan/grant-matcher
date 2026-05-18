@@ -32,6 +32,10 @@ A smart web app that helps charities and community organisations discover releva
 
 ## My Journey
 
+**18 May 2026 — Ran prompt evaluations, fixed UTF-8 bug, confirmed CI passing on GitHub**
+
+I ran the eval runner for the first time, hit a few snags (missing `prompt.md` files, a Windows encoding crash when writing emoji), and fixed them. Created fixture files for all 5 prompts so the CI can run deterministically without API calls. All 5 prompts now score 100% in mock mode. The GitHub Actions workflow confirmed green — from now on every push to the prompts folder triggers an automatic check.
+
 **18 May 2026 — Added prompt archive with reasoning docs, rubrics, and CI eval workflow**
 
 I documented the 5 prompts used to build this project and organised them into a `/prompts` folder — each with a `REASONING.md` explaining the thinking and a `rubric.yaml` with testable pass conditions. I also added an eval runner script and a GitHub Actions CI workflow that checks every prompt automatically on each push. One prompt was labelled "reconstructed" because the original lived in Claude Chat with no recoverable logs — being honest about that matters. I also learned that Claude Code session logs are stored as `.jsonl` files that you can grep to recover real verbatim prompts from past sessions.
