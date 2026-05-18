@@ -1,0 +1,53 @@
+{
+  "prompt": "grant-application-writer",
+  "timestamp": "2026-05-18T09:40:49.665621+00:00",
+  "cases_run": 1,
+  "avg_score": 0.263,
+  "all_passed": false,
+  "cases": [
+    {
+      "case_index": 0,
+      "inputs": {
+        "amount": "50000",
+        "org": "Community Trust",
+        "project": "language school",
+        "word_count": "750"
+      },
+      "output": "MOCK_OUTPUT\nthis is a mock response\nGet started",
+      "score": 0.263,
+      "passed": false,
+      "criteria": [
+        {
+          "name": "professional_academic_tone",
+          "passed": true,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "word_count_approximate",
+          "passed": false,
+          "weight": 4,
+          "error": null
+        },
+        {
+          "name": "structured_sections",
+          "passed": false,
+          "weight": 4,
+          "error": null
+        },
+        {
+          "name": "amount_stated",
+          "passed": false,
+          "weight": 3,
+          "error": null
+        },
+        {
+          "name": "organisation_referenced",
+          "passed": false,
+          "weight": 3,
+          "error": null
+        }
+      ]
+    }
+  ]
+}

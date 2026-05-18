@@ -1,0 +1,46 @@
+{
+  "prompt": "deploy-to-github-pages",
+  "timestamp": "2026-05-18T09:40:49.662475+00:00",
+  "cases_run": 1,
+  "avg_score": 0.0,
+  "all_passed": false,
+  "cases": [
+    {
+      "case_index": 0,
+      "inputs": {
+        "repo": "grant-matcher",
+        "branch": "main",
+        "files": "index.html README.md"
+      },
+      "output": "MOCK_OUTPUT\nthis is a mock response\nGet started",
+      "score": 0.0,
+      "passed": false,
+      "criteria": [
+        {
+          "name": "all_tasks_addressed",
+          "passed": false,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "live_url_provided",
+          "passed": false,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "repo_confirmed",
+          "passed": false,
+          "weight": 4,
+          "error": null
+        },
+        {
+          "name": "topics_mentioned",
+          "passed": false,
+          "weight": 2,
+          "error": null
+        }
+      ]
+    }
+  ]
+}

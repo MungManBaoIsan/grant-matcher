@@ -1,0 +1,46 @@
+{
+  "prompt": "portfolio-update",
+  "timestamp": "2026-05-18T09:40:49.667824+00:00",
+  "cases_run": 1,
+  "avg_score": 0.0,
+  "all_passed": false,
+  "cases": [
+    {
+      "case_index": 0,
+      "inputs": {
+        "project": "Grant Matcher Pro",
+        "live_url": "https://mungmanbaoisan.github.io/grant-matcher/",
+        "tech": "HTML CSS JavaScript"
+      },
+      "output": "MOCK_OUTPUT\nthis is a mock response\nGet started",
+      "score": 0.0,
+      "passed": false,
+      "criteria": [
+        {
+          "name": "project_name_included",
+          "passed": false,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "both_urls_present",
+          "passed": false,
+          "weight": 4,
+          "error": null
+        },
+        {
+          "name": "tech_stack_listed",
+          "passed": false,
+          "weight": 3,
+          "error": null
+        },
+        {
+          "name": "features_documented",
+          "passed": false,
+          "weight": 3,
+          "error": null
+        }
+      ]
+    }
+  ]
+}

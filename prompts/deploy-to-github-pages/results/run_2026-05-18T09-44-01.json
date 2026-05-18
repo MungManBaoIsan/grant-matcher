@@ -1,0 +1,46 @@
+{
+  "prompt": "deploy-to-github-pages",
+  "timestamp": "2026-05-18T09:44:01.903316+00:00",
+  "cases_run": 1,
+  "avg_score": 1.0,
+  "all_passed": true,
+  "cases": [
+    {
+      "case_index": 0,
+      "inputs": {
+        "repo": "grant-matcher",
+        "branch": "main",
+        "files": "index.html README.md"
+      },
+      "output": "All 8 tasks completed successfully.\n\n1. Created new public GitHub repository at https://github.com/MungManBaoIsan/grant-matcher\n2. Initialised repository with a .gitignore for web projects\n3. Added index.html as the main application file\n4. Added README.md with full project documentation\n5. Created LICENSE file with MIT License terms\n6. Configured GitHub Pages to serve from the main branch\n7. Created initial commit: \"Initial commit: Grant Matcher Pro v1.0\"\n8. GitHub Pages is now live and confirmed working\n\nLive URL: https://mungmanbaoisan.github.io/grant-matcher/\n\nRepository description set to: \"Smart grant matching platform helping organizations discover relevant funding opportunities\"\n\nTopics and tags added: grant-matching, funding, nonprofit, charity, web-app, portfolio-project\n\nThe repository is public and accessible at https://github.com/MungManBaoIsan/grant-matcher\n",
+      "score": 1.0,
+      "passed": true,
+      "criteria": [
+        {
+          "name": "all_tasks_addressed",
+          "passed": true,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "live_url_provided",
+          "passed": true,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "repo_confirmed",
+          "passed": true,
+          "weight": 4,
+          "error": null
+        },
+        {
+          "name": "topics_mentioned",
+          "passed": true,
+          "weight": 2,
+          "error": null
+        }
+      ]
+    }
+  ]
+}

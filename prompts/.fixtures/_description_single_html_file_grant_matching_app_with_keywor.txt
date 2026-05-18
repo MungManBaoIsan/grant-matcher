@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Grant Matcher</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    .result-card { border: 1px solid #ccc; padding: 16px; margin: 8px 0; }
+    @media (max-width: 768px) { body { padding: 10px; } }
+  </style>
+</head>
+<body>
+  <h1>Grant Matcher</h1>
+  <form id="profile-form">
+    <input type="text" id="keywords" placeholder="Enter keywords">
+    <button type="submit">Find Matches</button>
+  </form>
+  <div id="results"></div>
+  <script>
+    const grants = [
+      { name: "National Lottery Community Fund", funder: "National Lottery", maxAmount: 500000, criteria: ["community", "education"] },
+      { name: "Garfield Weston Foundation", funder: "Garfield Weston", maxAmount: 100000, criteria: ["charity", "religion"] }
+    ];
+
+    function calculateMatch(grant, userText) {
+      let score = 0;
+      grant.criteria.forEach(word => { if (userText.includes(word)) score += 20; });
+      return Math.min(score, 100);
+    }
+
+    function findMatches() {
+      const userText = document.getElementById("keywords").value.toLowerCase();
+      const matches = grants.map(g => ({ ...g, score: calculateMatch(g, userText) }))
+        .filter(g => g.score > 0).sort((a, b) => b.score - a.score);
+      document.getElementById("results").innerHTML = matches.map(g =>
+        `<div class="result-card"><strong>${g.name}</strong> — ${g.score}% match
+         <button onclick="exportReport('${g.name}')">Export Report</button></div>`
+      ).join("");
+    }
+
+    function exportReport(grantName) {
+      const report = "Grant Match Report\n\nGrant: " + grantName;
+      const blob = new Blob([report], { type: "text/plain" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "grant-report.txt";
+      a.click();
+    }
+
+    document.getElementById("profile-form").addEventListener("submit", e => { e.preventDefault(); findMatches(); });
+  </script>
+</body>
+</html>

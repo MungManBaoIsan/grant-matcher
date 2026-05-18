@@ -1,0 +1,50 @@
+{
+  "prompt": "app-build-initial",
+  "timestamp": "2026-05-18T09:44:01.878466+00:00",
+  "cases_run": 1,
+  "avg_score": 1.0,
+  "all_passed": true,
+  "cases": [
+    {
+      "case_index": 0,
+      "inputs": {
+        "description": "single html file grant matching app with keyword scoring"
+      },
+      "output": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Grant Matcher</title>\n  <style>\n    body { font-family: sans-serif; padding: 20px; }\n    .result-card { border: 1px solid #ccc; padding: 16px; margin: 8px 0; }\n    @media (max-width: 768px) { body { padding: 10px; } }\n  </style>\n</head>\n<body>\n  <h1>Grant Matcher</h1>\n  <form id=\"profile-form\">\n    <input type=\"text\" id=\"keywords\" placeholder=\"Enter keywords\">\n    <button type=\"submit\">Find Matches</button>\n  </form>\n  <div id=\"results\"></div>\n  <script>\n    const grants = [\n      { name: \"National Lottery Community Fund\", funder: \"National Lottery\", maxAmount: 500000, criteria: [\"community\", \"education\"] },\n      { name: \"Garfield Weston Foundation\", funder: \"Garfield Weston\", maxAmount: 100000, criteria: [\"charity\", \"religion\"] }\n    ];\n\n    function calculateMatch(grant, userText) {\n      let score = 0;\n      grant.criteria.forEach(word => { if (userText.includes(word)) score += 20; });\n      return Math.min(score, 100);\n    }\n\n    function findMatches() {\n      const userText = document.getElementById(\"keywords\").value.toLowerCase();\n      const matches = grants.map(g => ({ ...g, score: calculateMatch(g, userText) }))\n        .filter(g => g.score > 0).sort((a, b) => b.score - a.score);\n      document.getElementById(\"results\").innerHTML = matches.map(g =>\n        `<div class=\"result-card\"><strong>${g.name}</strong> \u00e2\u20ac\u201d ${g.score}% match\n         <button onclick=\"exportReport('${g.name}')\">Export Report</button></div>`\n      ).join(\"\");\n    }\n\n    function exportReport(grantName) {\n      const report = \"Grant Match Report\\n\\nGrant: \" + grantName;\n      const blob = new Blob([report], { type: \"text/plain\" });\n      const a = document.createElement(\"a\");\n      a.href = URL.createObjectURL(blob);\n      a.download = \"grant-report.txt\";\n      a.click();\n    }\n\n    document.getElementById(\"profile-form\").addEventListener(\"submit\", e => { e.preventDefault(); findMatches(); });\n  </script>\n</body>\n</html>\n",
+      "score": 1.0,
+      "passed": true,
+      "criteria": [
+        {
+          "name": "single_html_file",
+          "passed": true,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "matching_algorithm_present",
+          "passed": true,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "grant_database_present",
+          "passed": true,
+          "weight": 4,
+          "error": null
+        },
+        {
+          "name": "responsive_design",
+          "passed": true,
+          "weight": 3,
+          "error": null
+        },
+        {
+          "name": "export_functionality",
+          "passed": true,
+          "weight": 3,
+          "error": null
+        }
+      ]
+    }
+  ]
+}

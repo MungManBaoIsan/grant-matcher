@@ -1,0 +1,18 @@
+Portfolio updated. Grant Matcher Pro has been added to your projects.
+
+Project: Grant Matcher Pro
+Description: AI-powered grant matching platform helping organisations discover relevant funding opportunities.
+
+Live demo: https://mungmanbaoisan.github.io/grant-matcher/
+Source code: https://github.com/MungManBaoIsan/grant-matcher
+
+Tech stack: HTML, CSS, JavaScript
+
+Key features:
+- Keyword-based matching algorithm that scores funders 0-100%
+- Interactive dashboard with real-time scoring and results ranking
+- Pre-loaded UK grant database with 8 funders
+- Export functionality for match reports
+- Mobile responsive design
+
+Status: Completed and deployed — May 2026

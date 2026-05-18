@@ -1,0 +1,22 @@
+{
+  "prompt": "grant-application-writer",
+  "timestamp": "2026-05-18T09:40:22.924100+00:00",
+  "cases_run": 1,
+  "avg_score": 0.0,
+  "all_passed": true,
+  "cases": [
+    {
+      "case_index": 0,
+      "inputs": {
+        "amount": "50000",
+        "org": "Community Trust",
+        "project": "language school",
+        "word_count": "750"
+      },
+      "output": "",
+      "score": null,
+      "passed": null,
+      "criteria": []
+    }
+  ]
+}

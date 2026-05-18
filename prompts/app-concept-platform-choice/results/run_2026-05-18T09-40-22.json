@@ -1,0 +1,19 @@
+{
+  "prompt": "app-concept-platform-choice",
+  "timestamp": "2026-05-18T09:40:22.912304+00:00",
+  "cases_run": 1,
+  "avg_score": 0.0,
+  "all_passed": true,
+  "cases": [
+    {
+      "case_index": 0,
+      "inputs": {
+        "question": "build a grant matching tool - Claude Chat or Claude Code"
+      },
+      "output": "",
+      "score": null,
+      "passed": null,
+      "criteria": []
+    }
+  ]
+}

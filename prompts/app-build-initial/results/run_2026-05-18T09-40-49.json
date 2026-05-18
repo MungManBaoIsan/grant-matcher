@@ -1,0 +1,50 @@
+{
+  "prompt": "app-build-initial",
+  "timestamp": "2026-05-18T09:40:49.656074+00:00",
+  "cases_run": 1,
+  "avg_score": 0.0,
+  "all_passed": false,
+  "cases": [
+    {
+      "case_index": 0,
+      "inputs": {
+        "description": "single html file grant matching app with keyword scoring"
+      },
+      "output": "MOCK_OUTPUT\nthis is a mock response\nGet started",
+      "score": 0.0,
+      "passed": false,
+      "criteria": [
+        {
+          "name": "single_html_file",
+          "passed": false,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "matching_algorithm_present",
+          "passed": false,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "grant_database_present",
+          "passed": false,
+          "weight": 4,
+          "error": null
+        },
+        {
+          "name": "responsive_design",
+          "passed": false,
+          "weight": 3,
+          "error": null
+        },
+        {
+          "name": "export_functionality",
+          "passed": false,
+          "weight": 3,
+          "error": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "prompt": "portfolio-update",
+  "timestamp": "2026-05-18T09:44:49.930425+00:00",
+  "cases_run": 1,
+  "avg_score": 1.0,
+  "all_passed": true,
+  "cases": [
+    {
+      "case_index": 0,
+      "inputs": {
+        "project": "Grant Matcher Pro",
+        "live_url": "https://mungmanbaoisan.github.io/grant-matcher/",
+        "tech": "HTML CSS JavaScript"
+      },
+      "output": "Portfolio updated. Grant Matcher Pro has been added to your projects.\n\nProject: Grant Matcher Pro\nDescription: AI-powered grant matching platform helping organisations discover relevant funding opportunities.\n\nLive demo: https://mungmanbaoisan.github.io/grant-matcher/\nSource code: https://github.com/MungManBaoIsan/grant-matcher\n\nTech stack: HTML, CSS, JavaScript\n\nKey features:\n- Keyword-based matching algorithm that scores funders 0-100%\n- Interactive dashboard with real-time scoring and results ranking\n- Pre-loaded UK grant database with 8 funders\n- Export functionality for match reports\n- Mobile responsive design\n\nStatus: Completed and deployed \u00e2\u20ac\u201d May 2026\n",
+      "score": 1.0,
+      "passed": true,
+      "criteria": [
+        {
+          "name": "project_name_included",
+          "passed": true,
+          "weight": 5,
+          "error": null
+        },
+        {
+          "name": "both_urls_present",
+          "passed": true,
+          "weight": 4,
+          "error": null
+        },
+        {
+          "name": "tech_stack_listed",
+          "passed": true,
+          "weight": 3,
+          "error": null
+        },
+        {
+          "name": "features_documented",
+          "passed": true,
+          "weight": 3,
+          "error": null
+        }
+      ]
+    }
+  ]
+}

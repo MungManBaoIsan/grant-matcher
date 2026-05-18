@@ -1,0 +1,5 @@
+For building a grant-matching database or AI tool, Claude Code is the better choice because it gives you a full development environment where you can write, run, and deploy real code.
+
+Claude Chat is ideal for drafting content, answering questions, or exploring ideas — but it does not allow you to build and ship a working application. Claude Code, however, enables you to create a complete web app, write a matching algorithm, and deploy it to GitHub Pages all in one session.
+
+The main consideration is complexity. If you only want a simple list or document, Claude Chat may be sufficient. But for a tool that scores organisations against grant criteria, stores data, and presents results interactively, Claude Code is better suited to the task.

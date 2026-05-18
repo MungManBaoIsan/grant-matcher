@@ -289,7 +289,7 @@ def write_summary(results: list[dict], output_path: Path) -> None:
 
     overall_pass = all(r['all_passed'] for r in results)
     lines += ['', f'**Overall:** {"✅ all prompts passing" if overall_pass else "❌ failures present"}']
-    output_path.write_text('\n'.join(lines))
+    output_path.write_text('\n'.join(lines), encoding='utf-8')
 
 
 def main():
