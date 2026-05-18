@@ -4,6 +4,7 @@ A smart web app that helps charities and community organisations discover releva
 
 **Live app:** [https://mungmanbaoisan.github.io/grant-matcher/](https://mungmanbaoisan.github.io/grant-matcher/)
 **GitHub:** [https://github.com/MungManBaoIsan/grant-matcher](https://github.com/MungManBaoIsan/grant-matcher)
+**Prompt library:** [https://github.com/MungManBaoIsan/grant-matcher/tree/main/prompts](https://github.com/MungManBaoIsan/grant-matcher/tree/main/prompts)
 
 ## What It Does
 
