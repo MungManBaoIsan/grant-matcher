@@ -1,0 +1,25 @@
+prompt: App Concept & Platform Choice
+version: v1
+criteria:
+  - name: clear_recommendation
+    description: Names a specific platform as the recommendation
+    weight: 5
+    pass_condition: any(platform in output for platform in ['Claude Code', 'Claude Chat', 'Cowork', 'claude code', 'claude chat'])
+
+  - name: reasoning_provided
+    description: Explains at least one reason why the recommended platform is better suited
+    weight: 4
+    pass_condition: any(word in output.lower() for word in ['because', 'since', 'suited', 'better', 'ideal', 'allows', 'enables'])
+
+  - name: tradeoff_or_consideration
+    description: Mentions at least one tradeoff, limitation, or consideration
+    weight: 3
+    pass_condition: any(word in output.lower() for word in ['however', 'but', 'although', 'consider', 'limitation', 'depends', 'alternatively'])
+
+test_cases:
+  - input:
+      question: "build a grant matching tool - Claude Chat or Claude Code"
+    expected_traits:
+      - names a specific platform
+      - gives at least one reason
+      - mentions a tradeoff or caveat

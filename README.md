@@ -32,6 +32,10 @@ A smart web app that helps charities and community organisations discover releva
 
 ## My Journey
 
+**18 May 2026 — Added prompt archive with reasoning docs, rubrics, and CI eval workflow**
+
+I documented the 5 prompts used to build this project and organised them into a `/prompts` folder — each with a `REASONING.md` explaining the thinking and a `rubric.yaml` with testable pass conditions. I also added an eval runner script and a GitHub Actions CI workflow that checks every prompt automatically on each push. One prompt was labelled "reconstructed" because the original lived in Claude Chat with no recoverable logs — being honest about that matters. I also learned that Claude Code session logs are stored as `.jsonl` files that you can grep to recover real verbatim prompts from past sessions.
+
 **16 May 2026 — Deployed Grant Matcher Pro to GitHub Pages**
 
 I built and deployed Grant Matcher Pro — a single-page web application that helps charities and community organisations find relevant UK grant funding. The app lets users enter their organisation's profile and keywords, then scores and ranks a pre-loaded database of 8+ UK funders by match percentage.

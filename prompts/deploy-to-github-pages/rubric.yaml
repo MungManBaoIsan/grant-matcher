@@ -1,0 +1,33 @@
+prompt: Deploy to GitHub Pages
+version: v1
+criteria:
+  - name: all_tasks_addressed
+    description: All 8 numbered tasks are acknowledged or actioned in the response
+    weight: 5
+    pass_condition: all(str(n) in output for n in [1, 2, 3, 4, 5, 6, 7, 8])
+
+  - name: live_url_provided
+    description: A GitHub Pages URL ending in github.io is mentioned
+    weight: 5
+    pass_condition: "'github.io' in output"
+
+  - name: repo_confirmed
+    description: Confirms the GitHub repository was created
+    weight: 4
+    pass_condition: any(term in output.lower() for term in ['repository', 'repo', 'created', 'github.com'])
+
+  - name: topics_mentioned
+    description: Confirms repository topics or tags were added
+    weight: 2
+    pass_condition: any(term in output.lower() for term in ['topic', 'tag', 'grant-matching', 'nonprofit'])
+
+test_cases:
+  - input:
+      repo: "grant-matcher"
+      branch: "main"
+      files: "index.html README.md"
+    expected_traits:
+      - addresses all 8 tasks
+      - includes a github.io URL
+      - confirms repository was created
+      - mentions topics or tags

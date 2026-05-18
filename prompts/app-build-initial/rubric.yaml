@@ -1,0 +1,37 @@
+prompt: App Build — Initial (Reconstructed)
+version: v1
+criteria:
+  - name: single_html_file
+    description: Output is a single HTML file containing HTML, CSS, and JavaScript
+    weight: 5
+    pass_condition: "'<html' in output and '<style' in output and '<script' in output"
+
+  - name: matching_algorithm_present
+    description: Contains a JavaScript function for scoring or matching grants
+    weight: 5
+    pass_condition: any(term in output for term in ['score', 'match', 'criteria', 'calculateMatch', 'findMatches'])
+
+  - name: grant_database_present
+    description: Contains at least one grant entry with a funder name and amount
+    weight: 4
+    pass_condition: any(term in output for term in ['funder', 'maxAmount', 'Fund', 'Foundation', 'grants'])
+
+  - name: responsive_design
+    description: Contains a media query for mobile responsiveness
+    weight: 3
+    pass_condition: "'@media' in output"
+
+  - name: export_functionality
+    description: Contains code to export or download a report
+    weight: 3
+    pass_condition: any(term in output for term in ['download', 'Blob', 'export', 'report'])
+
+test_cases:
+  - input:
+      description: "single html file grant matching app with keyword scoring"
+    expected_traits:
+      - contains html style and script tags
+      - has a scoring or matching function
+      - has a grant database
+      - has a media query
+      - has export or download functionality

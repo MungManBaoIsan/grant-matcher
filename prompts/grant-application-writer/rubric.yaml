@@ -1,0 +1,39 @@
+prompt: Grant Application Writer
+version: v1
+criteria:
+  - name: professional_academic_tone
+    description: Uses formal academic English — no casual phrases, exclamation marks, or informal language
+    weight: 5
+    pass_condition: not any(phrase in output.lower() for phrase in ['!', 'amazing', 'awesome', 'hey ', 'great news'])
+
+  - name: word_count_approximate
+    description: Output is between 650 and 850 words
+    weight: 4
+    pass_condition: 650 <= len(output.split()) <= 850
+
+  - name: structured_sections
+    description: Contains at least two named sections such as Executive Summary or Statement of Need
+    weight: 4
+    pass_condition: len(re.findall(r'(?i)(executive summary|statement of need|project description|objectives|evaluation|budget)', output)) >= 2
+
+  - name: amount_stated
+    description: Mentions the grant amount 50,000
+    weight: 3
+    pass_condition: "'50,000' in output or '50000' in output"
+
+  - name: organisation_referenced
+    description: References the organisation or project by name
+    weight: 3
+    pass_condition: any(name in output for name in ['Buddhapadipa', 'Thai Language', 'Sunday School'])
+
+test_cases:
+  - input:
+      amount: "50000"
+      org: "Community Trust"
+      project: "language school"
+      word_count: "750"
+    expected_traits:
+      - formal academic English throughout
+      - structured with named sections
+      - approximately 750 words
+      - mentions the funding amount

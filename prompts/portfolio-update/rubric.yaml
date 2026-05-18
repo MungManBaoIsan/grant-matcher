@@ -1,0 +1,33 @@
+prompt: Portfolio Update
+version: v1
+criteria:
+  - name: project_name_included
+    description: Portfolio entry includes Grant Matcher Pro
+    weight: 5
+    pass_condition: "'Grant Matcher' in output"
+
+  - name: both_urls_present
+    description: Both the live URL (github.io) and GitHub repo URL are present
+    weight: 4
+    pass_condition: "'github.io' in output and 'github.com' in output"
+
+  - name: tech_stack_listed
+    description: HTML, CSS, and JavaScript are all mentioned
+    weight: 3
+    pass_condition: all(tech in output for tech in ['HTML', 'CSS', 'JavaScript'])
+
+  - name: features_documented
+    description: At least two key features are mentioned
+    weight: 3
+    pass_condition: len(re.findall(r'(?i)(matching|export|database|responsive|scoring|algorithm)', output)) >= 2
+
+test_cases:
+  - input:
+      project: "Grant Matcher Pro"
+      live_url: "https://mungmanbaoisan.github.io/grant-matcher/"
+      tech: "HTML CSS JavaScript"
+    expected_traits:
+      - includes project name
+      - both URLs present
+      - tech stack listed
+      - features documented
